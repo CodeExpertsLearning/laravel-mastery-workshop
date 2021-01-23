@@ -4,7 +4,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <form action="" method="post">
+            <form action="{{route('events.update', $event->id)}}" method="post">
+                @csrf
+                @method('PUT')
                 <div class="w-full pb-5">
                     <label>Nome Evento</label>
                     <input type="text" class="w-full rounded focus:border-gray-400" name="name" value="{{$event->name}}">

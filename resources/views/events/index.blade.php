@@ -3,6 +3,11 @@
 
    <div class="py-12">
        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+           @if(session()->has('message'))
+               <div class="w-full mt-3 mb-3 border border-green-700 p-2 bg-green-200 text-green-700 rounded">
+                   {{session('message')}}
+               </div>
+           @endif
 
            <div class="flex flex-col">
                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -43,8 +48,13 @@
                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                            {{$e->created_at->format('d/m/Y H:i:s')}}
                                        </td>
-                                       <td>
-                                           <a href="{{route('event.show', $e->id)}}" class="px-4 py-2 bg-green-700 hover:bg-green-200 rounded text-white">EDITAR</a>
+                                       <td class="flex justify-between">
+                                           <a href="{{route('events.edit', $e->id)}}" class="px-4 py-2 bg-green-700 hover:bg-green-200 rounded text-white">EDITAR</a>
+                                           <form action="{{route('events.destroy', $e->id)}}" method="post">
+                                               @csrf
+                                               @method('DELETE')
+                                               <button class="px-4 py-2 bg-red-700 hover:bg-red-200 rounded text-white">REMOVER</button>
+                                           </form>
                                        </td>
                                    </tr>
                                @endforeach
