@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
 
 Route::prefix('/events')->name('event.')->group(function(){
     Route::get('/', [\App\Http\Controllers\EventsController::class, 'index'])->name('index');
-    Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])->name('index');
+    Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])->name('create');
     Route::get('/{event}', [\App\Http\Controllers\EventsController::class, 'show'])->name('show');
 });
 
